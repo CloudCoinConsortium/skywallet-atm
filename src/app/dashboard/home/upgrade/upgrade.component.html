@@ -1,0 +1,82 @@
+<div class="middleWrap">
+  <div class="middleWrapIn">
+    <ng-container *ngIf="showNormal">
+      <h2 class="subInnerHeader">Upgrade Coins to CC 2.0</h2>
+      <p class="formSubheading">Check this <a href="https://coins.collectiblecolors.com:8443/instructions" target="_blank" class="infoLink">link</a> for instructions.</p>
+      <div class="flexDiv">
+        <div class="widthHalf">
+          <div class="formField">
+            <div class="displayFlex">
+              <label>Amount (Minimum 86 coins)</label>
+              <div class="customTooltipWrap">
+                <img src="assets/info_circle.svg" alt="" class="labelInfoIcon">
+                <div class="tooltipDescWrap">
+                  <span>
+                    You will lose some coins if the amount is not a multiple of 85.125
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <input #autofocus name="amount" type="text" placeholder="XX" [(ngModel)]="amount" (keyup)="onAmountChange()">
+
+          </div>
+        </div>
+        <div class="widthHalf">
+          <div class="formField">
+            <div class="displayFlex">
+              <label>Email Address</label>
+              <div class="customTooltipWrap">
+                <img src="assets/info_circle.svg" alt="" class="labelInfoIcon">
+                <div class="tooltipDescWrap">
+                  <span>
+                    A copy of your new coins will be sent to this email address.
+                  </span>
+                </div>
+              </div>
+            </div>
+            <input type="text" name="skywallet" placeholder="username@domain.com" [(ngModel)]="memo">
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button class="customBtn" (click)="upgrade()">Upgrade Now</button>
+      </div>
+
+    </ng-container>
+
+    <ng-container *ngIf="showError">
+      <ng-lottie height="100px" [options]="errorOptions" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <div class="text-center" style="color:#ffffff;margin-bottom: 10px">{{errorMessage}}</div>
+      <div class="text-center" *ngIf="storageAvailable">
+        <button class="customBtn" (click)="hideErrorMessage()">
+          <fa-icon icon="arrow-left"></fa-icon>
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="showLoader">
+      <div class="text-center">
+        <ng-lottie height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+        <span style="color:#ffffff">{{ loadingMessage }}</span>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="balanceLoader">
+      <div class="text-center">
+        <ng-lottie height="150px" [options]="loadingOptions" (animationCreated)="animationCreated($event)"></ng-lottie>
+        <span style="color:#ffffff">{{loadingMessage}}</span>
+      </div>
+    </ng-container>
+
+    <div class="text-center subInnerHeader" *ngIf="complete">
+      <fa-icon icon="check" *ngIf="showDownload"></fa-icon> {{ completeMessage }}
+      <ng-container *ngIf="showDownload">
+        <div class="text-center" style="margin-top: 15px;">
+          <a class="customBtn" [href]="coinURL" target="_blank">Download coins</a>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

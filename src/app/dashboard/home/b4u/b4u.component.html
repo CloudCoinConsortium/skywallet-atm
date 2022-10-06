@@ -1,0 +1,36 @@
+<div class="middleWrap welcoemWrap">
+  <ng-container *ngIf="showNormal">
+    <div class="paymentWrap">
+      <img src="assets/b4u-logo.png" alt="logo" class="atmLogo">
+      <!-- <div class="gap20"></div> -->
+      <p>Do you want to send <span class="highlight">{{ cc }} Cloudcoins</span> <br><span *ngIf="merchantName">to {{ merchantName }}</span> for ${{ usd }} ?</p>
+      <div class="col-md-12">
+        <div class="button-wrapper">
+          <button class="customBtn" (click)="payment()">SEND PAYMENT AND NOTIFY MERCHANT</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="showError">
+    <ng-lottie height="100px" [options]="errorOptions" (animationCreated)="animationCreated($event)"></ng-lottie>
+    <div class="text-center" style="color:#ffffff;margin-bottom: 10px">{{errorMessage}}</div>
+    <div class="text-center">
+      <button class="customBtn" (click)="hideErrorMessage()">
+        <fa-icon icon="arrow-left"></fa-icon>
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="showLoader">
+    <div class="text-center">
+      <ng-lottie  height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <span style="color:#ffffff">{{loadingMessage}}</span>
+    </div>
+  </ng-container>
+
+  <div class="text-center subInnerHeader" *ngIf="complete">
+    <div [innerHTML]="completeMessage"></div>
+  </div>
+
+</div>

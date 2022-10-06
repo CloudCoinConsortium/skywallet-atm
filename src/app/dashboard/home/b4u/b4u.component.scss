@@ -1,0 +1,44 @@
+.atmLogo {
+  width: 100%;
+}
+
+.paymentWrap {
+  max-width: 1000px;
+  height: initial;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  img {
+    width: 30%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    @media (max-width: 576px) {
+      margin-bottom: 5px;
+      width: 70%;
+    }
+  }
+  p {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 500;
+    @media (max-width:600px){
+      font-size: 16px;
+    }
+  }
+}
+
+.highlight {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.welcoemWrap {
+  min-height: 45vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
